@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+//🟥let id = UUID() codablegはミュータブルにする意味
+struct Fruit: Codable, Identifiable {
+    var id = UUID()
+    var name: String
+    var isFavorite: Bool
+    var dishName: [String]
+    
+    
+}

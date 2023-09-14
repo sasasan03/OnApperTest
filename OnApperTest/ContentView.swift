@@ -7,20 +7,26 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    @EnvironmentObject var contentViewModel: ContentViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack{
+            List(contentViewModel.fruits){ fruit in
+                Text(fruit.name)
+            }
+            Button("追加"){
+                
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ContentViewModel())
     }
 }

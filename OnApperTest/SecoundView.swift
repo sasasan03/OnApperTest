@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct SecoundView: View {
+    @EnvironmentObject var contentViewModel: ContentViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            List(contentViewModel.fruits){ fruit in
+                Text(fruit.name)
+            }
+            Button("追加"){
+                
+            }
+        }
     }
 }
 
 struct SecoundView_Previews: PreviewProvider {
     static var previews: some View {
         SecoundView()
+            .environmentObject(ContentViewModel())
     }
 }
