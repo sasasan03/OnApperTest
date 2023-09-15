@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct SecoundView: View {
-    @EnvironmentObject var contentViewModel: ContentViewModel
+    
+    @StateObject var viewModel: SecondViewModel
+    let fruitModel: FruitModel
+    
+    init(fruitModel: FruitModel){
+        self.fruitModel = fruitModel
+        self._viewModel = StateObject(wrappedValue: SecondViewModel(fruitModel: fruitModel))
+    }
     
     var body: some View {
         VStack{
-            List(contentViewModel.fruits){ fruit in
+            List(viewModel.fruits){ fruit in
                 Text(fruit.name)
             }
             Button("追加"){
-                
+                viewModel.addFruit()
             }
         }
     }
@@ -24,7 +31,7 @@ struct SecoundView: View {
 
 struct SecoundView_Previews: PreviewProvider {
     static var previews: some View {
-        SecoundView()
-            .environmentObject(ContentViewModel())
+        SecoundView(fruitModel: FruitModel())
+//            .environmentObject(ContentViewModel())
     }
 }

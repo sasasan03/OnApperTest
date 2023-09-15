@@ -12,9 +12,9 @@ class UserDefaultManager {
     private let userDefault = UserDefaults.standard
     private var key = "key"
     
-    func save(toDo: [Fruit]) throws {
+    func save(fruit: [Fruit]) throws {
         do {
-            let json = try encode(toDo: toDo)
+            let json = try encode(fruit: fruit)
             userDefault.set(json, forKey: key)
         } catch {
             switch error as? DataConvertError ?? DataConvertError.unknown {
@@ -59,9 +59,9 @@ class UserDefaultManager {
         }
     }
     
-    private func encode(toDo: [Fruit]) throws -> String {
+    private func encode(fruit: [Fruit]) throws -> String {
         do {
-            let data = try JSONEncoder().encode(toDo)
+            let data = try JSONEncoder().encode(fruit)
             guard let json = String(data: data, encoding: .utf8) else {
                 throw DataConvertError.dataCorrupted
             }

@@ -10,15 +10,21 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var contentViewModel: ContentViewModel
+    @StateObject var viewModel: ContentViewModel
+    let fruitModel: FruitModel
+    
+    init(fruitModel: FruitModel){
+        self.fruitModel = fruitModel
+        self._viewModel = StateObject(wrappedValue: ContentViewModel(fruitModel: fruitModel))
+    }
     
     var body: some View {
         VStack{
-            List(contentViewModel.fruits){ fruit in
+            List(viewModel.fruits){ fruit in
                 Text(fruit.name)
             }
             Button("追加"){
-                
+                viewModel.addFruit()
             }
         }
     }
@@ -26,7 +32,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(ContentViewModel())
+        ContentView(fruitModel: FruitModel())
     }
 }

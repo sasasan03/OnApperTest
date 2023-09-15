@@ -11,7 +11,7 @@ import SwiftUI
 struct OnApperTestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(fruitModel: FruitModel())
         }
     }
 }
